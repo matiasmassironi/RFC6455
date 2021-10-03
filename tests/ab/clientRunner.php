@@ -72,7 +72,7 @@ function getTestCases() {
                 if ($pos) {
                     $data = substr($rawResponse, $pos + 4);
                     $rawResponse = substr($rawResponse, 0, $pos + 4);
-                    $response = \GuzzleHttp\Psr7\parse_response($rawResponse);
+                    $response = \GuzzleHttp\Psr7\Message::parseResponse($rawResponse);
 
                     if (!$cn->validateResponse($cnRequest, $response)) {
                         $connection->end();
@@ -137,7 +137,7 @@ function runTest($case)
                 if ($pos) {
                     $data = substr($rawResponse, $pos + 4);
                     $rawResponse = substr($rawResponse, 0, $pos + 4);
-                    $response = \GuzzleHttp\Psr7\parse_response($rawResponse);
+                    $response = \GuzzleHttp\Psr7\Message::parseResponse($rawResponse);
 
                     if (!$cn->validateResponse($cnRequest, $response)) {
                         echo "Invalid response.\n";
@@ -199,7 +199,7 @@ function createReport() {
                 if ($pos) {
                     $data = substr($rawResponse, $pos + 4);
                     $rawResponse = substr($rawResponse, 0, $pos + 4);
-                    $response = \GuzzleHttp\Psr7\parse_response($rawResponse);
+                    $response = \GuzzleHttp\Psr7\Message::parseResponse($rawResponse);
 
                     if (!$cn->validateResponse($cnRequest, $response)) {
                         $connection->end();
