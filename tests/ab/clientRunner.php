@@ -167,7 +167,7 @@ function runTest($case)
             $deferred->resolve();
         });
 
-        $connection->write(\GuzzleHttp\Psr7\str($cnRequest));
+        $connection->write(\GuzzleHttp\Psr7\Message::toString($cnRequest));
     });
 
     return $deferred->promise();
@@ -228,7 +228,7 @@ function createReport() {
             }
         });
 
-        $connection->write(\GuzzleHttp\Psr7\str($cnRequest));
+        $connection->write(\GuzzleHttp\Psr7\Message::toString($cnRequest));
     });
 
     return $deferred->promise();
