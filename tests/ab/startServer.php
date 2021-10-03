@@ -35,7 +35,7 @@ $socket->on('connection', function (React\Socket\ConnectionInterface $connection
             return;
         }
         $headerComplete = true;
-        $psrRequest = \GuzzleHttp\Psr7\parse_request($parts[0] . "\r\n\r\n");
+        $psrRequest = \GuzzleHttp\Psr7\Message::parseRequest($parts[0] . "\r\n\r\n");
         $negotiatorResponse = $negotiator->handshake($psrRequest);
 
         $negotiatorResponse = $negotiatorResponse->withAddedHeader("Content-Length", "0");
