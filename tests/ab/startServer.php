@@ -41,12 +41,12 @@ $socket->on('connection', function (React\Socket\ConnectionInterface $connection
         $negotiatorResponse = $negotiatorResponse->withAddedHeader("Content-Length", "0");
 
         if ($negotiatorResponse->getStatusCode() !== 101 && $psrRequest->getUri()->getPath() === '/shutdown') {
-            $connection->end(\GuzzleHttp\Psr7\str(new Response(200, [], 'Shutting down echo server.' . PHP_EOL)));
+            $connection->end(\GuzzleHttp\Psr7\Message::toString(new Response(200, [], 'Shutting down echo server.' . PHP_EOL)));
             $socket->close();
             return;
         };
 
-        $connection->write(\GuzzleHttp\Psr7\str($negotiatorResponse));
+        $connection->write(\GuzzleHttp\Psr7\Message::toString($negotiatorResponse));
 
         if ($negotiatorResponse->getStatusCode() !== 101) {
             $connection->end();
